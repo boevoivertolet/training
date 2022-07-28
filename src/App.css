@@ -24,8 +24,11 @@ div button{
 
 }
 button:hover{
-    color: cornflowerblue;
+    background: cornflowerblue;
 
+}
+button:active{
+background: lightskyblue;
 }
 
 div input{
