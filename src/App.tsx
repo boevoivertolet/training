@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
 import {Counter} from './Counter';
+import {Settings} from './Settings';
 
 
 function App() {
 
     return (
-        <div className="App">
+        <div>
             <Counter/>
+            <Settings/>
         </div>
     );
 }

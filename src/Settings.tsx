@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 
-export const Counter = () => {
+export const Settings = () => {
     let initialValue = 0;
     let initialMaxValue = 0;
 
@@ -21,28 +21,20 @@ export const Counter = () => {
         let maxValue = Number(e.currentTarget.value)
         setMaxValue(maxValue)
     }
+    const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
+        let maxValue = Number(e.currentTarget.value)
+        setMaxValue(maxValue)
+    }
 
 
-    return (
+        return (
         <div className={'App'}>
             <div>
-                <div className={value === maxValue ? 'red' : 'table'}>{value}</div>
-                <button disabled={value === maxValue} onClick={() => {
-                    plusOneFN()
-                }}>+1
-                </button>
-                {/*<button disabled={value === 0} onClick={() => {
-                    minusOneFN()
-                }}>-1
-                </button>*/}
-                <button disabled={value === 0} onClick={() => {
-                    toZero()
-                }}>reset
-                </button>
-            </div>
-            <div>
+                <button disabled={value === 0} onClick={() => {toZero()}}>set</button>
                 <input onChange={fixMaxValue} type="number"/>
+                <input onChange={fixMinValue} type="number"/>
             </div>
+
         </div>
     )
 
