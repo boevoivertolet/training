@@ -10,29 +10,23 @@ export const Settings = () => {
     const toZero = () => {
         setValue(0)
     }
-    const minusOneFN = () => {
-        setValue(value - 1)
-    }
-    const plusOneFN = () => {
-        if (value < maxValue)
-            setValue(value + 1)
-    }
+
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         let maxValue = Number(e.currentTarget.value)
         setMaxValue(maxValue)
     }
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
-        let maxValue = Number(e.currentTarget.value)
-        setMaxValue(maxValue)
+        let minValue = Number(e.currentTarget.value)
+        setMaxValue(minValue)
     }
 
 
         return (
-        <div className={'App'}>
+        <div className={'settings'}>
             <div>
                 <button disabled={value === 0} onClick={() => {toZero()}}>set</button>
-                <input onChange={fixMaxValue} type="number"/>
-                <input onChange={fixMinValue} type="number"/>
+                <div className={'minMaxDiv'}>Max :<input onChange={fixMaxValue} type="number"/></div>
+                <div className={'minMaxDiv'}>Min : <input onChange={fixMinValue} type="number"/></div>
             </div>
 
         </div>

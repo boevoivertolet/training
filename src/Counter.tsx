@@ -41,7 +41,7 @@ export const Counter = () => {
                 </button>
             </div>
             <div>
-                <input onChange={fixMaxValue} type="number"/>
+          {/*      <input onChange={fixMaxValue} type="number"/>*/}
             </div>
         </div>
     )

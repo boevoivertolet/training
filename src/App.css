@@ -34,10 +34,9 @@ background: lightskyblue;
 div input{
     border-radius: 5px;
     border: 2px solid gray;
-    box-shadow: 10px 5px 5px gray;
-    width: 30px;
-    margin-top: 50px;
-    margin-left: 140px;
+    width: 40px;
+    margin-left: 60px;
+
 }
 .table{
     border: solid 1px black;
@@ -48,5 +47,26 @@ div input{
 }
 input:hover{
     color: cornflowerblue;
+
+}
+.settings{
+    background: cornflowerblue;
+    width: 300px;
+    height: 200px;
+    border: 1px solid;
+    border-radius: 15px;
+    box-shadow: 10px 5px 5px gray;
+    text-align: center;
+    margin: 50px;
+}
+.minMaxDiv{
+    border: 2px solid gray;
+    width: 150px;
+    border-radius: 15px;
+    padding: 5px 0px 5px 25px;
+    margin-left: 70px;
+    background: white;
+    margin-top: 25px;
+
 
 }
