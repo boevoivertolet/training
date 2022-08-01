@@ -1,32 +1,38 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 
-export const Settings = () => {
-    let initialValue = 0;
-    let initialMaxValue = 0;
+export type SettingsPropsType = {
+    fixValue: (tempMaxValue:number,tempMinValue:number) => void
+    fixMaxValue: (fixedMaxValue: number) => void
+    fixMinValue: (fixedMinValue: number) => void
 
-    const [maxValue, setMaxValue] = useState<number>(initialMaxValue)
-    const [value, setValue] = useState<number>(initialValue)
 
-    const toZero = () => {
-        setValue(0)
+}
+
+
+export const Settings = (props: SettingsPropsType) => {
+
+
+    const onChangeMaxHAndler = (e: ChangeEvent<HTMLInputElement>) => {
+        let fixedMaxValue = Number(e.currentTarget.value)
+        props.fixMaxValue(fixedMaxValue)
+
+    }
+    const onChangeMinHAndler = (e: ChangeEvent<HTMLInputElement>) => {
+        let fixedMinValue = Number(e.currentTarget.value)
+        props.fixMinValue(fixedMinValue)
+
     }
 
-    const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        let maxValue = Number(e.currentTarget.value)
-        setMaxValue(maxValue)
-    }
-    const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
-        let minValue = Number(e.currentTarget.value)
-        setMaxValue(minValue)
-    }
 
 
-        return (
+
+    return (
         <div className={'settings'}>
             <div>
-                <button disabled={value === 0} onClick={() => {toZero()}}>set</button>
-                <div className={'minMaxDiv'}>Max :<input onChange={fixMaxValue} type="number"/></div>
-                <div className={'minMaxDiv'}>Min : <input onChange={fixMinValue} type="number"/></div>
+                <button onClick={()=>props.fixValue(,)}>set
+                </button>
+                <div className={'minMaxDiv'}>Max :<input onChange={onChangeMaxHAndler} type="number"/></div>
+                <div className={'minMaxDiv'}>Min : <input onChange={onChangeMinHAndler} type="number"/></div>
             </div>
 
         </div>
