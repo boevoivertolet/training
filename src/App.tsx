@@ -23,23 +23,26 @@ function App() {
     let initialMinValue = 0;
 
 
+
     const [maxValue, setMaxValue] = useState<number>(initialMaxValue)
     const [minValue, setMinValue] = useState<number>(initialMinValue)
 
-    let tempMaxValue;
-    let tempMinValue;
-    const fixMaxValue = (fixedMaxValue: number) => {
-        tempMaxValue = fixedMaxValue;
+    let fixedMinValue = 0;
+    let fixedMaxValue = 0;
+
+    const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+        fixedMaxValue = Number(e.currentTarget.value);
+        console.log(e.currentTarget.value)
     }
 
-    const fixMinValue = (fixedMinValue: number) => {
-        tempMinValue = fixedMinValue;
+    const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
+        fixedMinValue = Number(e.currentTarget.value);
+        console.log(e.currentTarget.value)
     }
 
-
-    const fixValue = (tempMaxValue: number, tempMinValue: number) => {
-        setMaxValue(tempMaxValue);
-        setMinValue(tempMinValue);
+    const fixValue = () => {
+        setMaxValue(fixedMaxValue);
+        setMinValue(fixedMinValue);
     }
 
 
@@ -47,11 +50,12 @@ function App() {
         <div>
             <Counter minValue={minValue} maxValue={maxValue} toMinValue={toMinValue} value={value}
                      plusOneFN={plusOneFN}/>
-            <Settings fixValue={fixValue} fixMaxValue={fixMaxValue} fixMinValue={fixMinValue}
-                      />
+            <Settings fixValue={fixValue} fixMinValue={fixMinValue} fixMaxValue={fixMaxValue}/>
         </div>
     );
 }
+
+
 
 export default App;
 
