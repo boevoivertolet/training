@@ -23,12 +23,12 @@ function App() {
     let initialMinValue = 0;
 
 
+    let [maxValue, setMaxValue] = useState<number>(initialMaxValue)
+    let [minValue, setMinValue] = useState<number>(initialMinValue)
 
-    const [maxValue, setMaxValue] = useState<number>(initialMaxValue)
-    const [minValue, setMinValue] = useState<number>(initialMinValue)
+    let fixedMinValue = minValue;
+    let fixedMaxValue = maxValue;
 
-    let fixedMinValue = 0;
-    let fixedMaxValue = 0;
 
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMaxValue = Number(e.currentTarget.value);
@@ -41,20 +41,32 @@ function App() {
     }
 
     const fixValue = () => {
-        setMaxValue(fixedMaxValue);
-        setMinValue(fixedMinValue);
+            setMaxValue(fixedMaxValue);
+            setMinValue(fixedMinValue);
     }
 
 
     return (
         <div>
-            <Counter minValue={minValue} maxValue={maxValue} toMinValue={toMinValue} value={value}
-                     plusOneFN={plusOneFN}/>
-            <Settings fixValue={fixValue} fixMinValue={fixMinValue} fixMaxValue={fixMaxValue}/>
+            <Counter
+                minValue={minValue}
+                maxValue={maxValue}
+                toMinValue={toMinValue}
+                value={value}
+                plusOneFN={plusOneFN}
+            />
+            <Settings
+                fixValue={fixValue}
+                fixMinValue={fixMinValue}
+                fixMaxValue={fixMaxValue}
+                minValue={minValue}
+                maxValue={maxValue}
+                fixedMaxValue={fixedMaxValue}
+                fixedMinValue={fixedMinValue}
+            />
         </div>
     );
 }
-
 
 
 export default App;

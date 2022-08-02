@@ -11,19 +11,6 @@ type CounterPropsType ={
 }
 
 export const Counter = (props: CounterPropsType) => {
- /*   let initialValue = 0;
-
-    const [value, setValue] = useState<number>(initialValue)
-
-    const toZero = () => {
-        setValue(0)
-    }
-
-    const plusOneFN = () => {
-        if (value < props.maxValue)
-            setValue(value + 1)
-        console.log(props.maxValue)
-    }*/
 
 
     return (
@@ -35,7 +22,7 @@ export const Counter = (props: CounterPropsType) => {
                 }}>+1
                 </button>
 
-                <button disabled={props.value === 0} onClick={() => {
+                <button disabled={props.value === props.minValue} onClick={() => {
                     props.toMinValue()
                 }}>reset
                 </button>
