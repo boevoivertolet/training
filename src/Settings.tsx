@@ -18,7 +18,7 @@ export const Settings = (props: SettingsPropsType) => {
     return (
         <div className={'settings'}>
             <div>
-                <button disabled={props.minValue=== props.fixedMinValue}
+                <button
                         onClick={props.fixValue}>set
                 </button>
                 <div className={'minMaxDiv'}>Max :<input onChange={props.fixMaxValue} type="number"/></div>

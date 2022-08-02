@@ -33,11 +33,13 @@ function App() {
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMaxValue = Number(e.currentTarget.value);
         console.log(e.currentTarget.value)
+
     }
 
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMinValue = Number(e.currentTarget.value);
         console.log(e.currentTarget.value)
+
     }
 
     const fixValue = () => {
