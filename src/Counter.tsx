@@ -17,11 +17,11 @@ export const Counter = (props: CounterPropsType) => {
         <div className={'App'}>
             <div>
                 <div className={props.value === props.maxValue ? 'red' : 'table'}>{props.maxValue !== 0 ? props.value : 'enter values and press "set"'}</div>
-                <button disabled={props.value === props.maxValue} onClick={() => {
+                <button disabled={props.value === props.maxValue } onClick={() => {
                     props.plusOneFN()
                 }}>inc
                 </button>
-                <button disabled={props.value === props.minValue} onClick={() => {
+                <button disabled={props.value === props.minValue && props.value === 0 } onClick={() => {
                     props.toMinValue()
                 }}>reset
                 </button>

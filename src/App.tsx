@@ -29,16 +29,14 @@ function App() {
     let fixedMaxValue = maxValue;
 
 
+
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMaxValue = Number(e.currentTarget.value);
-        console.log(e.currentTarget.value)
 
     }
 
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMinValue = Number(e.currentTarget.value);
-        console.log(e.currentTarget.value)
-
     }
 
     const fixValue = () => {
@@ -57,6 +55,7 @@ function App() {
                 plusOneFN={plusOneFN}
             />
             <Settings
+                value={value}
                 fixValue={fixValue}
                 fixMinValue={fixMinValue}
                 fixMaxValue={fixMaxValue}
@@ -64,6 +63,7 @@ function App() {
                 maxValue={maxValue}
                 fixedMaxValue={fixedMaxValue}
                 fixedMinValue={fixedMinValue}
+
             />
         </div>
     );
