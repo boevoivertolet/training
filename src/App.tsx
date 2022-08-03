@@ -16,7 +16,6 @@ function App() {
     const plusOneFN = () => {
         if (value < maxValue)
             setValue(value + 1)
-        console.log(maxValue)
     }
 
     let initialMaxValue = 0;
