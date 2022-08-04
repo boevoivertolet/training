@@ -4,13 +4,18 @@ import {Counter} from './Counter';
 import {Settings} from './Settings';
 
 
+
+
+
 function App() {
+
     let initialValue = 0;
 
     const [value, setValue] = useState<number>(initialValue)
 
     const toMinValue = () => {
         setValue(minValue)
+
     }
 
     const plusOneFN = () => {
@@ -29,7 +34,6 @@ function App() {
     let fixedMaxValue = maxValue;
 
 
-
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMaxValue = Number(e.currentTarget.value);
 
@@ -40,8 +44,9 @@ function App() {
     }
 
     const fixValue = () => {
-            setMaxValue(fixedMaxValue);
-            setMinValue(fixedMinValue);
+        setMaxValue(fixedMaxValue);
+        setMinValue(fixedMinValue);
+        setValue(fixedMinValue)
     }
 
 
