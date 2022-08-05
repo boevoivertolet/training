@@ -13,42 +13,36 @@ export type initialValueType = {
 function AppState() {
 
 
-
-
-    let initialValue = [{value: 0, minValue: 0, maxValue: 11}];
-
-
+    let initialValue = [{value: 0, minValue: 0, maxValue: 0}];
     const [value, setValue] = useState<Array<initialValueType>>(initialValue)
 
-    let fixedMinValue = value[0].minValue
-    let fixedMaxValue = value[0].maxValue
 
     const toMinValue = () => {
-        setValue([{...value[0], minValue: fixedMinValue}])
-        console.log(value[0].value)
+        setValue([{ ...value[0], value: fixedMinValue}])
+        console.log([{...value[0], value: fixedMinValue}])
     }
 
 
     const plusOneFN = () => {
-       if (value[0].value < value[0].maxValue)
+        if (value[0].value < value[0].maxValue)
             setValue([{...value[0], value: value[0].value + 1}])
     }
+
+    let fixedMinValue = value[0].minValue;
+    let fixedMaxValue = value[0].maxValue;
 
 
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMaxValue = Number(e.currentTarget.value);
 
     }
-
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMinValue = Number(e.currentTarget.value);
     }
 
     const fixValue = () => {
-        setValue([{...value[0], maxValue: fixedMaxValue}]);
-        debugger;
-        // setValue(fixedMinValue);
-        // setValue(fixedMinValue)
+         setValue([{...value[0], maxValue:fixedMaxValue, minValue:fixedMinValue, value:fixedMinValue}])
+
     }
 
 
@@ -60,7 +54,7 @@ function AppState() {
                 plusOneFN={plusOneFN}
             />
             <SettingsState
-                initialValue={initialValue}
+                value={value}
                 fixValue={fixValue}
                 fixMinValue={fixMinValue}
                 fixMaxValue={fixMaxValue}

@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {initialValueType} from './AppState';
 
 export type SettingsPropsType = {
@@ -7,24 +7,29 @@ export type SettingsPropsType = {
     fixMinValue: (e: ChangeEvent<HTMLInputElement>) => void
     fixedMaxValue: number
     fixedMinValue: number
-    initialValue: initialValueType[]
+    value: initialValueType[]
 
 }
 
 
 export const SettingsState = (props: SettingsPropsType) => {
-    let value = props.initialValue[0].value
-    let maxValue = props.initialValue[0].maxValue
-    let minValue = props.initialValue[0].minValue
+    // let value = props.value[0].value
+    // let maxValue = props.value[0].maxValue
+    // let minValue = props.value[0].minValue
+
+
+
 
     return (
         <div className={'settings'}>
             <div>
-                <button
+                <button //disabled={value===minValue}
                     onClick={props.fixValue}>set
                 </button>
-                <div className={'minMaxDiv'}>max value :<input placeholder={'0'}  onChange={props.fixMaxValue} type="number"/></div>
-                <div className={'minMaxDiv'}>start value : <input placeholder={'0'} onChange={props.fixMinValue} type="number"/></div>
+                <div className={'minMaxDiv'}>max value :<input placeholder={'0'} onChange={props.fixMaxValue}
+                                                               type="number"/></div>
+                <div className={'minMaxDiv'}>start value : <input placeholder={'0'}  onChange={props.fixMinValue}
+                                                                  type="number"/></div>
             </div>
 
         </div>
