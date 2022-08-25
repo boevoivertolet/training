@@ -33,13 +33,23 @@ button:active{
 background: lightskyblue;
 }
 
-div input{
+.maxInput{
+    text-align: center;
     border-radius: 5px;
     border: 2px solid gray;
-    width: 40px;
+    width: 70px;
     margin-left: 60px;
-
 }
+.minInput{
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid gray;
+    width: 70px;
+    margin-left: 60px;
+}
+
+
+
 .table{
     border: solid 1px black;
     background: white;
@@ -47,9 +57,11 @@ div input{
     box-shadow: 10px 5px 5px gray;
 
 }
-input:hover{
+.maxInput:hover{
     color: cornflowerblue;
-
+}
+.minInput:hover{
+    color: cornflowerblue;
 }
 .settings{
     background: cornflowerblue;
@@ -63,12 +75,19 @@ input:hover{
 }
 .minMaxDiv{
     border: 2px solid gray;
-    width: 150px;
     border-radius: 15px;
-    padding: 5px 0px 5px 25px;
-    margin-left: 70px;
     background: white;
     margin-top: 25px;
-
-
+}
+.minMaxDiv{
+    border: 2px solid gray;
+    border-radius: 15px;
+    background: white;
+    margin-top: 25px;
+}
+.redInput{
+    color: red;
+    background: pink;
+    border-radius: 15px;
+    border: 2px solid gray;
 }

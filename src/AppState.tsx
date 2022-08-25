@@ -2,24 +2,33 @@ import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import {CounterState} from './CounterState';
 import {SettingsState} from './SettingsState';
+import {SimpleCounter} from './SimpleCounter';
 
 
-export type initialValueType = {
+export type ValueType = {
     value: number
     maxValue: number
     minValue: number
+
+}
+export type FixedValueType = {
+
+    midMaxVal: number
+    midMinVal: number
+
 }
 
 function AppState() {
-
+    let initialFixedValue = [{midMaxVal: 0, midMinVal: 0}]
+    const [fv, setFv] = useState<Array<FixedValueType>>(initialFixedValue)
 
     let initialValue = [{value: 0, minValue: 0, maxValue: 0}];
-    const [value, setValue] = useState<Array<initialValueType>>(initialValue)
+    const [value, setValue] = useState<Array<ValueType>>(initialValue)
 
 
     const toMinValue = () => {
-        setValue([{ ...value[0], value: fixedMinValue}])
-        console.log([{...value[0], value: fixedMinValue}])
+        setValue([{...value[0], value: fixedMinValue}])
+
     }
 
 
@@ -33,18 +42,22 @@ function AppState() {
 
 
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+        debugger;
         fixedMaxValue = Number(e.currentTarget.value);
+        setFv([{...fv[0], midMaxVal: fixedMaxValue}])
 
     }
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMinValue = Number(e.currentTarget.value);
+        setFv([{...fv[0], midMinVal: fixedMinValue}])
+
+
     }
 
     const fixValue = () => {
-         setValue([{...value[0], maxValue:fixedMaxValue, minValue:fixedMinValue, value:fixedMinValue}])
-
+        debugger;
+        setValue([{...value[0], maxValue: fixedMaxValue, minValue: fixedMinValue, value: fixedMinValue}])
     }
-
 
     return (
         <div>
@@ -54,13 +67,13 @@ function AppState() {
                 plusOneFN={plusOneFN}
             />
             <SettingsState
+                fv={fv}
                 value={value}
                 fixValue={fixValue}
                 fixMinValue={fixMinValue}
                 fixMaxValue={fixMaxValue}
-                fixedMaxValue={fixedMaxValue}
-                fixedMinValue={fixedMinValue}
             />
+            <SimpleCounter/>
         </div>
     );
 }

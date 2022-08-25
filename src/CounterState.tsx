@@ -1,10 +1,10 @@
 import React from 'react';
-import {initialValueType} from './AppState';
+import {ValueType} from './AppState';
 
 
 
 type CounterPropsType = {
-    value: initialValueType[]
+    value: ValueType[]
     plusOneFN: () => void
     toMinValue: () => void
 }
@@ -18,7 +18,6 @@ export const CounterState = (props: CounterPropsType) => {
         <div className={'App'}>
             <div>
                 <div
-
                     className={value === maxValue ? 'red' : 'table'}>{maxValue !== 0 ? value : 'enter values and press "set"' && minValue < 0 ? 'incorrect value' : 'enter values and press "set"'}</div>
                 <button disabled={value === maxValue} onClick={() => {
                     props.plusOneFN()
@@ -26,7 +25,7 @@ export const CounterState = (props: CounterPropsType) => {
                 </button>
                 <button onClick={() => {
                     props.toMinValue()
-                }}>reset
+                }}>start value
                 </button>
             </div>
             <div>
