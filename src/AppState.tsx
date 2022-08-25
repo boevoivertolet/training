@@ -3,6 +3,7 @@ import './App.css';
 import {CounterState} from './CounterState';
 import {SettingsState} from './SettingsState';
 import {SimpleCounter} from './SimpleCounter';
+import {SimpleCounterWithMaxValue} from './SimpleCounterWithMaxValue';
 
 
 export type ValueType = {
@@ -74,6 +75,7 @@ function AppState() {
                 fixMaxValue={fixMaxValue}
             />
             <SimpleCounter/>
+            <SimpleCounterWithMaxValue/>
         </div>
     );
 }
