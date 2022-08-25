@@ -8,14 +8,16 @@
     padding: 50px;
     border-radius: 15px;
     box-shadow: 10px 5px 5px gray;
+    font-size: small;
 
 }
 .red{
     color: red;
     border: solid 1px gray;
     background: white;
-    border-radius: 15px;
     box-shadow: 10px 5px 5px gray;
+    height: 25px;
+    padding: 3px;
 }
 div button{
     width: 50px;
@@ -53,8 +55,9 @@ background: lightskyblue;
 .table{
     border: solid 1px black;
     background: white;
-    border-radius: 15px;
     box-shadow: 10px 5px 5px gray;
+    height: 25px;
+    padding: 3px;
 
 }
 .maxInput:hover{
@@ -90,4 +93,8 @@ background: lightskyblue;
     background: pink;
     border-radius: 15px;
     border: 2px solid gray;
+}
+.incorrectValue{
+    background: pink;
+    color: red;
 }

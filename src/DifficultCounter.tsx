@@ -2,8 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import {CounterState} from './CounterState';
 import {SettingsState} from './SettingsState';
-import {SimpleCounter} from './SimpleCounter';
-import {SimpleCounterWithMaxValue} from './SimpleCounterWithMaxValue';
+
 
 
 export type ValueType = {
@@ -19,7 +18,7 @@ export type FixedValueType = {
 
 }
 
-function AppState() {
+export function DifficultCounter() {
     let initialFixedValue = [{midMaxVal: 0, midMinVal: 0}]
     const [fv, setFv] = useState<Array<FixedValueType>>(initialFixedValue)
 
@@ -43,26 +42,30 @@ function AppState() {
 
 
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        debugger;
+
         fixedMaxValue = Number(e.currentTarget.value);
         setFv([{...fv[0], midMaxVal: fixedMaxValue}])
+        console.log(fv)
 
     }
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         fixedMinValue = Number(e.currentTarget.value);
         setFv([{...fv[0], midMinVal: fixedMinValue}])
+        console.log(fv)
 
 
     }
 
     const fixValue = () => {
-        debugger;
-        setValue([{...value[0], maxValue: fixedMaxValue, minValue: fixedMinValue, value: fixedMinValue}])
+        setValue([{...value[0], maxValue: fv[0].midMaxVal, minValue: fv[0].midMinVal, value: fv[0].midMinVal}])
+
+
     }
 
     return (
         <div>
             <CounterState
+                fv={fv}
                 value={value}
                 toMinValue={toMinValue}
                 plusOneFN={plusOneFN}
@@ -74,13 +77,12 @@ function AppState() {
                 fixMinValue={fixMinValue}
                 fixMaxValue={fixMaxValue}
             />
-            <SimpleCounter/>
-            <SimpleCounterWithMaxValue/>
+
         </div>
     );
 }
 
 
-export default AppState;
+
 
 

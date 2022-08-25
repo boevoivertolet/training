@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
 import reportWebVitals from './reportWebVitals';
-import AppState from './AppState';
+import {AllCounters} from './AllCounters';
 
 
 
@@ -12,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <AppState />
+    <AllCounters/>
   </React.StrictMode>
 );
 

@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {FixedValueType, ValueType} from './AppState';
+import {FixedValueType, ValueType} from './DifficultCounter';
 
 export type SettingsPropsType = {
     fv: FixedValueType[]
@@ -22,13 +22,13 @@ export const SettingsState = (props: SettingsPropsType) => {
     return (
         <div className={'settings'}>
             <div>
-                <button disabled={maxValue === midMaxVal && minValue === midMinVal}
+                <button disabled={midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal< 0 || midMinVal < 0 }
                         onClick={props.fixValue}>set
                 </button>
-                <div className={'minMaxDiv'}>max:<input placeholder={'value'} onChange={props.fixMaxValue}
-                                                        type="number"/></div>
-                <div className={'minMaxDiv'}>start: <input placeholder={'value'} onChange={props.fixMinValue}
-                                                           type="number"/></div>
+                <div>max:<input className={midMaxVal < 0  || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMaxValue}
+                                type="number"/></div>
+                <div>start:<input className={midMinVal < 0 || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMinValue}
+                                  type="number"/></div>
             </div>
 
         </div>
