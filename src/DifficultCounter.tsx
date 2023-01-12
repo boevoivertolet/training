@@ -72,7 +72,6 @@ export function DifficultCounter() {
     return (
         <div>
             <CounterState
-                fv={fv}
                 value={value}
                 toMinValue={toMinValue}
                 plusOneFN={plusOneFN}
