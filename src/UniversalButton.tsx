@@ -4,20 +4,18 @@ import {ValueType} from './DifficultCounter';
 type DefaultButtonType = {
     title: string
     value: ValueType[]
-    plusOneFN: () => void
+    callBack: () => void
 
 
 }
 export const UniversalButton = (props: DefaultButtonType) => {
     let value = props.value[0].value
     let maxValue = props.value[0].maxValue
+    const callBack = () => {props.callBack()}
 
 
 
     return (
-        <button disabled={value === maxValue} onClick={() => {
-            props.plusOneFN()
-        }}>{props.title}
-        </button>
+        <button /*disabled={value === maxValue}*/ onClick={callBack}>{props.title}</button>
     )
 }

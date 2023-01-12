@@ -49,6 +49,14 @@ export const CounterState = (props: CounterPropsType) => {
     let midMinVal = props.fv[0].midMinVal
 
 
+    const plusOneFN = () => {
+        props.plusOneFN()
+    }
+    const toMinValue = () => {
+        props.toMinValue()
+    }
+
+
     return (
         <div className={'App'}>
             <div>
@@ -56,11 +64,12 @@ export const CounterState = (props: CounterPropsType) => {
                     {/*{maxValue !== 0 ? value : 'enter values and press "set"' && midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal < 0 || midMinVal < 0 ? 'incorrect value' : 'enter values and press "set"'}*/}
                     {value}
                 </div>
-                <UniversalButton title={'inc'} value={props.value} plusOneFN={props.plusOneFN}/>
-                <button onClick={() => {
+                <UniversalButton title={'inc'} value={props.value} callBack={plusOneFN}/>
+                <UniversalButton title={'reset'} value={props.value} callBack={toMinValue}/>
+                {/*<button onClick={() => {
                     props.toMinValue()
                 }}>reset
-                </button>
+                </button>*/}
             </div>
             <div>
 

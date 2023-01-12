@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {FixedValueType, ValueType} from './DifficultCounter';
+import {UniversalButton} from './UniversalButton';
 
 export type SettingsPropsType = {
     fv: FixedValueType[]
@@ -12,23 +13,23 @@ export type SettingsPropsType = {
 
 
 export const SettingsState = (props: SettingsPropsType) => {
-    //let value = props.value[0].value
+    /*let value = props.value[0].value*/
     let maxValue = props.value[0].maxValue
     let minValue = props.value[0].minValue
     let midMaxVal = props.fv[0].midMaxVal
     let midMinVal = props.fv[0].midMinVal
 
+    const fixValue = () => {props.fixValue()}
 
     return (
         <div className={'settings'}>
             <div>
-                <button disabled={midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal< 0 || midMinVal < 0 }
+                {/*<button disabled={midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal< 0 || midMinVal < 0 }
                         onClick={props.fixValue}>set
-                </button>
-                <div>max:<input className={midMaxVal < 0  || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMaxValue}
-                                type="number"/></div>
-                <div>start:<input className={midMinVal < 0 || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMinValue}
-                                  type="number"/></div>
+                </button>*/}
+                <UniversalButton title={'set'} value={props.value} callBack={fixValue}/>
+                <div>max:<input className={midMaxVal < 0  || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMaxValue} type="number"/></div>
+                <div>start:<input className={midMinVal < 0 || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMinValue} type="number"/></div>
             </div>
 
         </div>
