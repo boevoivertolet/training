@@ -64,8 +64,8 @@ export const CounterState = (props: CounterPropsType) => {
                     {/*{maxValue !== 0 ? value : 'enter values and press "set"' && midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal < 0 || midMinVal < 0 ? 'incorrect value' : 'enter values and press "set"'}*/}
                     {value}
                 </div>
-                <UniversalButton title={'inc'} value={props.value} callBack={plusOneFN}/>
-                <UniversalButton title={'reset'} value={props.value} callBack={toMinValue}/>
+                <UniversalButton title={'inc'}  callBack={plusOneFN}/>
+                <UniversalButton title={'reset'}  callBack={toMinValue}/>
                 {/*<button onClick={() => {
                     props.toMinValue()
                 }}>reset

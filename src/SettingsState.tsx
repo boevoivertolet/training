@@ -19,6 +19,7 @@ export const SettingsState = (props: SettingsPropsType) => {
     let midMaxVal = props.fv[0].midMaxVal
     let midMinVal = props.fv[0].midMinVal
 
+
     const fixValue = () => {props.fixValue()}
 
     return (
@@ -27,7 +28,7 @@ export const SettingsState = (props: SettingsPropsType) => {
                 {/*<button disabled={midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal< 0 || midMinVal < 0 }
                         onClick={props.fixValue}>set
                 </button>*/}
-                <UniversalButton title={'set'} value={props.value} callBack={fixValue}/>
+                <UniversalButton title={'set'} disabled={midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal< 0 || midMinVal < 0 } callBack={fixValue}/>
                 <div>max:<input className={midMaxVal < 0  || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMaxValue} type="number"/></div>
                 <div>start:<input className={midMinVal < 0 || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMinValue} type="number"/></div>
             </div>
