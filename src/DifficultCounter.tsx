@@ -5,6 +5,9 @@ import {SettingsState} from './SettingsState';
 
 
 export function DifficultCounter() {
+    let initialValue = [{value: 'enter values and press "set"', minValue: 0, maxValue: 0}];
+    const [value, setValue] = useState<Array<ValueType>>(initialValue)
+
 
     let initialFixedValue = [{midMaxVal: 0, midMinVal: 0}]
     const [fv, setFv] = useState<Array<FixedValueType>>(initialFixedValue)
@@ -18,15 +21,8 @@ export function DifficultCounter() {
     }, [])
 
 
-    let initialValue = [{value: 'enter values and press "set"', minValue: 0, maxValue: 0}];
-    const [value, setValue] = useState<Array<ValueType>>(initialValue)
-
-    let fixedMinValue = value[0].minValue;
-    let fixedMaxValue = value[0].maxValue;
-
-
     const toMinValue = () => {
-        setValue([{...value[0], value: fixedMinValue}])
+        setValue([{...value[0], value: value[0].minValue}])
     }
 
     const plusOneFN = () => {
@@ -36,9 +32,9 @@ export function DifficultCounter() {
 
 
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        fixedMaxValue = Number(e.currentTarget.value);
-        setFv([{...fv[0], midMaxVal: fixedMaxValue}])
-        if (fixedMaxValue < fixedMinValue || fixedMaxValue === fixedMinValue || fixedMaxValue < 0) {
+        let fixMaxVal = Number(e.currentTarget.value);
+        setFv([{...fv[0], midMaxVal: fixMaxVal}])
+        if (fixMaxVal <= fv[0].midMinVal || fixMaxVal < 0) {
             setValue([{...value[0], value: 'incorrect value'}])
         } else {
             setValue([{...value[0], value: 'enter values and press "set"'}])
@@ -46,9 +42,9 @@ export function DifficultCounter() {
 
     }
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
-        fixedMinValue = Number(e.currentTarget.value);
-        setFv([{...fv[0], midMinVal: fixedMinValue}])
-        if (fixedMaxValue < fixedMinValue || fixedMinValue === fixedMaxValue || fixedMinValue < 0) {
+        let fixMinVal = Number(e.currentTarget.value);
+        setFv([{...fv[0], midMinVal: fixMinVal}])
+        if (fv[0].midMaxVal <= fixMinVal || fixMinVal < 0) {
             setValue([{...value[0], value: 'incorrect value'}])
         } else {
             setValue([{...value[0], value: 'enter values and press "set"'}])
