@@ -24,9 +24,9 @@ export const SettingsState = (props: SettingsPropsType) => {
     return (
         <div className={'settings'}>
             <div>
-                <UniversalButton title={'set'} disabled={midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal< 0 || midMinVal < 0 } callBack={fixValue}/>
-                <div>max:<input className={midMaxVal < 0  || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMaxValue} type="number"/></div>
-                <div>start:<input className={midMinVal < 0 || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMinValue} type="number"/></div>
+                <UniversalButton title={'set'} disabled={ midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal< 0 || midMinVal < 0} callBack={fixValue}/>
+                <div>max:<input value={props.fv[0].midMaxVal} className={midMaxVal < 0  || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMaxValue} type="number"/></div>
+                <div>start:<input value={props.fv[0].midMinVal} className={midMinVal < 0 || midMaxVal <= midMinVal  ? 'incorrectValue' : ''} onChange={props.fixMinValue} type="number"/></div>
             </div>
 
         </div>

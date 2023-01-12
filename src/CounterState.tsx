@@ -27,7 +27,7 @@ export const CounterState = (props: CounterPropsType) => {
     return (
         <div className={'App'}>
             <div>
-                <div className={value === maxValue || typeof value === 'string' ? 'red' : 'table'}>{value}</div>
+                <div className={value === maxValue || value === 'incorrect value' ? 'red' : 'table'}>{value}</div>
                 <UniversalButton title={'inc'} disabled={value === maxValue || value === 'enter values and press "set"' || value === 'incorrect value'} callBack={plusOneFN}/>
                 <UniversalButton title={'reset'} disabled={value === minValue || value === 'enter values and press "set"' || value === 'incorrect value'} callBack={toMinValue}/>
             </div>
