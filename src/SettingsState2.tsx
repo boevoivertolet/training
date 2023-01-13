@@ -8,13 +8,13 @@ export type SettingsPropsType = {
     fixMaxValue: (e: ChangeEvent<HTMLInputElement>) => void
     fixMinValue: (e: ChangeEvent<HTMLInputElement>) => void
     value: ValueType[]
-    changeMod?: () => void
+    changeMod: () => void
     mod?: boolean
 
 }
 
 
-export const SettingsState = (props: SettingsPropsType) => {
+export const SettingsState2 = (props: SettingsPropsType) => {
     let maxValue = props.value[0].maxValue
     let minValue = props.value[0].minValue
     let midMaxVal = props.fv[0].midMaxVal
@@ -23,6 +23,9 @@ export const SettingsState = (props: SettingsPropsType) => {
 
     const fixValue = () => {
         props.fixValue()
+        if (props.mod) {
+            props.changeMod()
+        }
 
     }
 
@@ -30,7 +33,6 @@ export const SettingsState = (props: SettingsPropsType) => {
         <div className={'settings'}>
             <div>
                 <UniversalButton title={'set'}
-                                 disabled={midMaxVal === maxValue && midMinVal === minValue || midMaxVal <= midMinVal || midMaxVal < 0 || midMinVal < 0}
                                  callBack={fixValue}/>
                 <div>max:<input value={props.fv[0].midMaxVal}
                                 className={midMaxVal < 0 || midMaxVal <= midMinVal ? 'incorrectValue' : ''}
