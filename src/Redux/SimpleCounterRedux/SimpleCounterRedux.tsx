@@ -1,16 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './SimpleCounterRedux.module.css'
 import {useAppDispatch, useAppSelector} from './SimpleCounterReduxStore';
 import {inqAC, resetAC} from './simpleCounterReduxReducer';
 
 
 export const SimpleCounterRedux = () => {
-    /* const [value, setValue] = useState<number>(0)*/
     const value = useAppSelector(state => state.simpleCounter.value)
     const dispatch = useAppDispatch()
 
     const inq = () => {
-        dispatch(inqAC(value))
+        dispatch(inqAC())
     }
     const reset = () => {
         dispatch(resetAC())

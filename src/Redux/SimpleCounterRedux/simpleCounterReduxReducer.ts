@@ -3,10 +3,10 @@ const initialState: InitialStateType = {
 }
 
 
-export const simpleCounterReduxReducer = (state: InitialStateType = initialState, action: inqACType | resetACType) => {
+export const simpleCounterReduxReducer = (state: InitialStateType = initialState, action: inqACType | resetACType): InitialStateType => {
     switch (action.type) {
         case 'INQ':
-            return {...state, value: action.value + 1}
+            return {...state, value: state.value + 1}
         case 'RESET':
             return {...state, value: 0}
         default:
@@ -15,12 +15,13 @@ export const simpleCounterReduxReducer = (state: InitialStateType = initialState
 }
 
 //Action
-export const inqAC = (value: number) => ({type: 'INQ', value} as const)
+export const inqAC = () => ({type: 'INQ'} as const)
 export const resetAC = () => ({type: 'RESET'} as const)
 
 
 export type InitialStateType = {
     value: number
+
 }
 export type inqACType = ReturnType<typeof inqAC>
 export type resetACType = ReturnType<typeof resetAC>

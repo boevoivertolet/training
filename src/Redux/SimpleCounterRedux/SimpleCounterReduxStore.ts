@@ -2,9 +2,13 @@ import {combineReducers} from 'redux';
 import {legacy_createStore as createStore} from 'redux'
 import {inqACType, resetACType, simpleCounterReduxReducer} from './simpleCounterReduxReducer';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
+import {
+    simpleCounterWithMaxValueReduxReducer
+} from '../SimpleCounterWithMaxValueRedux/simpleCounterWithMaxValueReduxReducer';
 
 const rootReducer = combineReducers({
-    simpleCounter: simpleCounterReduxReducer
+    simpleCounter: simpleCounterReduxReducer,
+    simpleCounterWithMaxValue: simpleCounterWithMaxValueReduxReducer
 })
 
 export const store = createStore(rootReducer)

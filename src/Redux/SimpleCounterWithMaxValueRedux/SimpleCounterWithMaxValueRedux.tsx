@@ -1,28 +1,33 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from '../SimpleCounterRedux/SimpleCounterRedux.module.css'
+import {useAppDispatch, useAppSelector} from '../SimpleCounterRedux/SimpleCounterReduxStore';
+import { inqValAC, resetValAC} from './simpleCounterWithMaxValueReduxReducer';
+
 
 
 export const SimpleCounterWithMaxValueRedux = () => {
-    const [value, setValue] = useState<number>(0)
-    let maxValue = 5;
-    let startValue = 0;
+
+    const dispatch = useAppDispatch()
+    const val = useAppSelector(state => state.simpleCounterWithMaxValue.val)
+    let maxValue = useAppSelector(state => state.simpleCounterWithMaxValue.maxValue);
+    let startValue = useAppSelector(state => state.simpleCounterWithMaxValue.startValue);
 
     const increment = () => {
-        if (value < maxValue) {
-            setValue(value + 1)
+        if (val < maxValue) {
+            dispatch(inqValAC())
         }
 
     }
     const resetToStartValue = () => {
-        setValue(startValue)
+        dispatch(resetValAC(startValue))
 
     }
 
 
     return <div className={styles.SimpleCounter}>
-        <div className={value === maxValue ? styles.redValue : ''}>{value}</div>
-        <button disabled={value === maxValue} onClick={increment}>inc</button>
-        <button disabled={value === startValue} onClick={resetToStartValue}>reset</button>
+        <div className={val === maxValue ? styles.redValue : ''}>{val}</div>
+        <button disabled={val === maxValue} onClick={increment}>inc</button>
+        <button disabled={val === startValue} onClick={resetToStartValue}>reset</button>
 
     </div>
 
