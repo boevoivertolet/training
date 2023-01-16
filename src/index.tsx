@@ -3,19 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {AllCounters} from './AllCounters';
-
+import {AllCountersRedux} from './Redux/AllCountersRedux';
+import {Provider} from 'react-redux';
+import {store} from './Redux/SimpleCounterRedux/SimpleCounterReduxStore';
 
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <AllCounters/>
-  </React.StrictMode>
+    <React.StrictMode>
+        <AllCounters/>
+        <hr/>
+        <span>Redux</span>
+        <Provider store={store}>
+            <AllCountersRedux/>
+        </Provider>
+
+    </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();

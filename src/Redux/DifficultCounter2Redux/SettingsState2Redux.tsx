@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
-import {FixedValueType, ValueType} from './DifficultCounter';
-import {UniversalButton} from './UniversalButton';
+import {UniversalButton} from '../../UniversalButton';
+import {FixedValueType, ValueType} from './DifficultCounter2Redux';
+
 
 export type SettingsPropsType = {
     fv: FixedValueType[]
@@ -14,7 +15,7 @@ export type SettingsPropsType = {
 }
 
 
-export const SettingsState2 = (props: SettingsPropsType) => {
+export const SettingsState2Redux = (props: SettingsPropsType) => {
     let midMaxVal = props.fv[0].midMaxVal
     let midMinVal = props.fv[0].midMinVal
 
