@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../SimpleCounterRedux/SimpleCounterRedux.module.css'
-import {useAppDispatch, useAppSelector} from '../SimpleCounterRedux/SimpleCounterReduxStore';
+import {useAppDispatch, useAppSelector} from '../CounterStore';
 import { inqValAC, resetValAC} from './simpleCounterWithMaxValueReduxReducer';
 
 

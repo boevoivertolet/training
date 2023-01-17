@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {AllCounters} from './AllCounters';
 import {AllCountersRedux} from './Redux/AllCountersRedux';
 import {Provider} from 'react-redux';
-import {store} from './Redux/SimpleCounterRedux/SimpleCounterReduxStore';
+import {store} from './Redux/CounterStore';
 
 
 const root = ReactDOM.createRoot(
