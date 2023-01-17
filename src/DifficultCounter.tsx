@@ -59,18 +59,18 @@ export function DifficultCounter() {
     }
 
     return (
-        <div>
-            <CounterState
-                value={value}
-                toMinValue={toMinValue}
-                plusOneFN={plusOneFN}
-            />
+        <div className={'setCount'}>
             <SettingsState
                 fv={fv}
                 value={value}
                 fixValue={fixValue}
                 fixMinValue={fixMinValue}
                 fixMaxValue={fixMaxValue}
+            />
+            <CounterState
+                value={value}
+                toMinValue={toMinValue}
+                plusOneFN={plusOneFN}
             />
 
         </div>

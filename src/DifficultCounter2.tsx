@@ -1,7 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
-import {CounterState} from './CounterState';
-import {SettingsState} from './SettingsState';
 import {CounterState2} from './CounterState2';
 import {SettingsState2} from './SettingsState2';
 
@@ -66,7 +64,7 @@ export function DifficultCounter2() {
     }
 
     return (
-        <div>
+        <div className={'setCount'}>
             {mod
                 ? <SettingsState2
                     changeMod={changeMod}

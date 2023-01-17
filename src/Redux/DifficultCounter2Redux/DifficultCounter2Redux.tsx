@@ -72,7 +72,7 @@ export function DifficultCounter2Redux() {
     }
 
     return (
-        <div>
+        <div className={'setCount'}>
             {mod
                 ? <SettingsState2Redux
                     changeMod={changeMod}

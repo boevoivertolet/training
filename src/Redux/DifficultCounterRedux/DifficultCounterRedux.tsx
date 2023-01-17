@@ -64,12 +64,7 @@ export function DifficultCounterRedux() {
     }
 
     return (
-        <div>
-            <CounterStateRedux
-                value={value}
-                toMinValue={toMinValue}
-                plusOneFN={plusOneFN}
-            />
+        <div className={'setCount'}>
             <SettingsStateRedux
                 fv={fv}
                 value={value}
@@ -77,7 +72,11 @@ export function DifficultCounterRedux() {
                 fixMinValue={fixMinValue}
                 fixMaxValue={fixMaxValue}
             />
-
+            <CounterStateRedux
+                value={value}
+                toMinValue={toMinValue}
+                plusOneFN={plusOneFN}
+            />
         </div>
     );
 }

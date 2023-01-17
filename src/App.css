@@ -98,3 +98,9 @@ background: lightskyblue;
     background: pink;
     color: red;
 }
+.setCount{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+}
