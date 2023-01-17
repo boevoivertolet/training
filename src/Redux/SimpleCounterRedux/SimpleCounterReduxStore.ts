@@ -5,10 +5,12 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {
     simpleCounterWithMaxValueReduxReducer
 } from '../SimpleCounterWithMaxValueRedux/simpleCounterWithMaxValueReduxReducer';
+import {difficultCounterReduxValueReducer} from '../DifficultCounterRedux/difficultCounterReduxReducer';
 
 const rootReducer = combineReducers({
     simpleCounter: simpleCounterReduxReducer,
-    simpleCounterWithMaxValue: simpleCounterWithMaxValueReduxReducer
+    simpleCounterWithMaxValue: simpleCounterWithMaxValueReduxReducer,
+    difficultCounterReduxValue: difficultCounterReduxValueReducer
 })
 
 export const store = createStore(rootReducer)
