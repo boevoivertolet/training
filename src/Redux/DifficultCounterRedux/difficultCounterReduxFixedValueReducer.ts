@@ -22,7 +22,6 @@ export const setFixedValueAC = (fixMaxValue: number | string, fixMinValue: numbe
     fixMaxValue,
     fixMinValue
 } as const)
-export const resetAC = () => ({type: 'RESET-VALUE'} as const)
 
 
 export type InitialStateType = {
@@ -35,4 +34,3 @@ type ActionType = changeFixedMaXValueACType | setFixedValueACType| changeFixedMi
 type changeFixedMaXValueACType = ReturnType<typeof changeFixedMaXValueAC>
 type changeFixedMinValueACType = ReturnType<typeof changeFixedMinValueAC>
 type setFixedValueACType = ReturnType<typeof setFixedValueAC>
-type resetACType = ReturnType<typeof resetAC>

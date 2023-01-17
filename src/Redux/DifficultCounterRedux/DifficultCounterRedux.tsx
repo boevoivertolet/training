@@ -30,24 +30,16 @@ export function DifficultCounterRedux() {
             dispatch(setFixedValueAC(fixMaxValue, fixMinValue))
         }
     }, [])
-
-
-    const toMinValue = () => {
-        dispatch(resetAC())
-    }
-
+    const toMinValue = () => {dispatch(resetAC())}
     const plusOneFN = () => {
         if (value[0].value < maxValue) {
             dispatch(changeValueAC(Number(value[0].value)))
         }
 
     }
-
-
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         let fixMaxVal = Number(e.currentTarget.value);
         dispatch(changeFixedMaXValueAC(fixMaxVal))
-
         if (fixMaxVal <= fv[0].midMinVal || fixMaxVal < 0) {
             dispatch(changeValueAC('incorrect value'))
         } else {
@@ -64,7 +56,6 @@ export function DifficultCounterRedux() {
             dispatch(changeValueAC('enter values and press "set"'))
         }
     }
-
     const fixValue = () => {
         dispatch(setValueAC(fv[0].midMaxVal, fv[0].midMinVal, fv[0].midMinVal))
         localStorage.setItem('fixMaxValue', JSON.stringify(fv[0].midMaxVal))

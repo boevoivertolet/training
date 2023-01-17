@@ -1,66 +1,74 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import '../../App.css';
-import { CounterState2Redux} from './CounterState2Redux';
-import { SettingsState2Redux} from './SettingsState2Redux';
+import {CounterState2Redux} from './CounterState2Redux';
+import {SettingsState2Redux} from './SettingsState2Redux';
+import {useDispatch} from 'react-redux';
+import {useAppSelector} from '../CounterStore';
+import {
+    changeFixedMaXValueAC2,
+    changeFixedMinValueAC2,
+    setFixedValueAC2, setModAC2
+} from './difficultCounter2ReduxFixedValueReducer';
+import {changeValueAC2, resetAC2, setValueAC2} from './difficultCounter2ReduxValueReducer';
 
 
 export function DifficultCounter2Redux() {
 
-    const [mod, setMod] = useState(false)
-    let initialValue = [{value: 'enter values and press "set"', minValue: 0, maxValue: 0}];
-    const [value, setValue] = useState<Array<ValueType>>(initialValue)
+    const dispatch = useDispatch()
+    const value = useAppSelector(state => state.difficultCounter2ReduxValue)
+    const maxValue = useAppSelector(state => state.difficultCounter2ReduxValue[0].maxValue)
+    const fv = useAppSelector(state => state.difficultCounter2ReduxFixedValue)
+    const mod = useAppSelector(state => state.difficultCounter2ReduxFixedValue[0].mod)
 
-
-    let initialFixedValue = [{midMaxVal: 0, midMinVal: 0}]
-    const [fv, setFv] = useState<Array<FixedValueType>>(initialFixedValue)
 
     useEffect(() => {
         let fixMaxValue = localStorage.getItem('fixMaxValue')
         let fixMinValue = localStorage.getItem('fixMinValue')
         if (fixMaxValue && fixMinValue) {
-            setFv([{...fv[0], midMaxVal: JSON.parse(fixMaxValue), midMinVal: JSON.parse(fixMinValue)}])
+            dispatch(setFixedValueAC2(fixMaxValue, fixMinValue))
         }
     }, [])
 
 
     const toMinValue = () => {
-        setValue([{...value[0], value: value[0].minValue}])
+        dispatch(resetAC2())
     }
 
     const plusOneFN = () => {
-        if (value[0].value < value[0].maxValue)
-            setValue([{...value[0], value: Number(value[0].value) + 1}])
+        if (value[0].value < maxValue) {
+            dispatch(changeValueAC2(Number(value[0].value)))
+        }
+
     }
 
 
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         let fixMaxVal = Number(e.currentTarget.value);
-        setFv([{...fv[0], midMaxVal: fixMaxVal}])
+        dispatch(changeFixedMaXValueAC2(fixMaxVal))
         if (fixMaxVal <= fv[0].midMinVal || fixMaxVal < 0) {
-            setValue([{...value[0], value: 'incorrect value'}])
+            dispatch(changeValueAC2('incorrect value'))
         } else {
-            setValue([{...value[0], value: 'enter values and press "set"'}])
+            dispatch(changeValueAC2('enter values and press "set"'))
         }
 
     }
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         let fixMinVal = Number(e.currentTarget.value);
-        setFv([{...fv[0], midMinVal: fixMinVal}])
+        dispatch(changeFixedMinValueAC2(fixMinVal))
         if (fv[0].midMaxVal <= fixMinVal || fixMinVal < 0) {
-            setValue([{...value[0], value: 'incorrect value'}])
+            dispatch(changeValueAC2('incorrect value'))
         } else {
-            setValue([{...value[0], value: 'enter values and press "set"'}])
+            dispatch(changeValueAC2('enter values and press "set"'))
         }
     }
-
     const fixValue = () => {
-        setValue([{...value[0], maxValue: fv[0].midMaxVal, minValue: fv[0].midMinVal, value: fv[0].midMinVal}])
+        dispatch(setValueAC2(fv[0].midMaxVal, fv[0].midMinVal, fv[0].midMinVal))
         localStorage.setItem('fixMaxValue', JSON.stringify(fv[0].midMaxVal))
         localStorage.setItem('fixMinValue', JSON.stringify(fv[0].midMinVal))
 
     }
     const changeMod = () => {
-        setMod(!mod)
+        dispatch(setModAC2(!mod))
     }
 
     return (
@@ -90,16 +98,15 @@ export function DifficultCounter2Redux() {
     );
 }
 
-
 export type ValueType = {
     value: number | string
-    maxValue: number
-    minValue: number
+    maxValue: number | string
+    minValue: number | string
 
 }
 export type FixedValueType = {
 
-    midMaxVal: number
-    midMinVal: number
+    midMaxVal: number | string
+    midMinVal: number | string
 
 }

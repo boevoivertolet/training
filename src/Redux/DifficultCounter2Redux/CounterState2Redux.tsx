@@ -14,6 +14,11 @@ type CounterPropsType = {
 
 
 export const CounterState2Redux = (props: CounterPropsType) => {
+
+
+
+
+
     let value = props.value[0].value
     let maxValue = props.value[0].maxValue
     let minValue = props.value[0].minValue

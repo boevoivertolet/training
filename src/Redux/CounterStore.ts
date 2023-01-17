@@ -9,12 +9,18 @@ import {difficultCounterReduxValueReducer} from './DifficultCounterRedux/difficu
 import {
     difficultCounterReduxFixedValueReducer,
 } from './DifficultCounterRedux/difficultCounterReduxFixedValueReducer';
+import {
+    difficultCounter2ReduxFixedValueReducer
+} from './DifficultCounter2Redux/difficultCounter2ReduxFixedValueReducer';
+import {difficultCounter2ReduxValueReducer} from './DifficultCounter2Redux/difficultCounter2ReduxValueReducer';
 
 const rootReducer = combineReducers({
     simpleCounter: simpleCounterReduxReducer,
     simpleCounterWithMaxValue: simpleCounterWithMaxValueReduxReducer,
     difficultCounterReduxValue: difficultCounterReduxValueReducer,
-    difficultCounterReduxFixedValue: difficultCounterReduxFixedValueReducer
+    difficultCounter2ReduxValue: difficultCounter2ReduxValueReducer,
+    difficultCounterReduxFixedValue: difficultCounterReduxFixedValueReducer,
+    difficultCounter2ReduxFixedValue: difficultCounter2ReduxFixedValueReducer
 })
 
 export const store = createStore(rootReducer)
