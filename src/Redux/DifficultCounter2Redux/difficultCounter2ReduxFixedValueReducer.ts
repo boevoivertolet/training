@@ -1,7 +1,12 @@
+import {Dispatch} from 'redux';
+import {changeValueAC2, setValueAC2} from './difficultCounter2ReduxValueReducer';
+import {RootAppActionsType} from '../CounterStore';
+import {FixedValueType} from './DifficultCounter2Redux';
+
 const initialState: Array<InitialStateType> = [{midMaxVal: 0, midMinVal: 0, mod: false}]
 
 
-export const difficultCounter2ReduxFixedValueReducer = (state: Array<InitialStateType> = initialState, action: DiffCounter2ActionType): Array<InitialStateType> => {
+export const difficultCounter2ReduxFixedValueReducer = (state: Array<InitialStateType> = initialState, action: RootAppActionsType): Array<InitialStateType> => {
     switch (action.type) {
         case '2/CHANGE-FIXED-MAX-VALUE':
             return [{...state[0], midMaxVal: action.fixMaxVal}]
@@ -27,15 +32,34 @@ export const setFixedValueAC2 = (fixMaxValue: number | string, fixMinValue: numb
 export const setModAC2 = (mod: boolean) => ({type: '2/SET-MOD', mod} as const)
 
 // Thunk
-/*
-export const changeFixedMaXValueTC2 = () => (dispatch: Dispatch<DiffCounter2ActionType>) => {
+export const setValueWithFixedValueTC2 = (value: number | string) => (dispatch: Dispatch<RootAppActionsType>) => {
     let fixMaxValue = localStorage.getItem('fixMaxValue')
     let fixMinValue = localStorage.getItem('fixMinValue')
     if (fixMaxValue && fixMinValue) {
-        dispatch(setFixedValueAC2(fixMaxValue, fixMinValue))
+        dispatch(setFixedValueAC2(Number(fixMaxValue), Number(fixMinValue)))
+        dispatch(setValueAC2(Number(fixMaxValue), Number(fixMinValue), Number(value)))
     }
 }
-*/
+export const setModTC2 = (mod: boolean) => (dispatch: Dispatch<RootAppActionsType>) => {
+    dispatch(setModAC2(!mod))
+}
+export const changeFixedMaXValueTC2 = (fixMaxVal: number, fv:FixedValueType[]) => (dispatch: Dispatch<RootAppActionsType>) => {
+    dispatch(changeFixedMaXValueAC2(fixMaxVal))
+    if (fixMaxVal <= fv[0].midMinVal || fixMaxVal < 0) {
+        dispatch(changeValueAC2('incorrect value'))
+    } else {
+        dispatch(changeValueAC2('enter values and press "set"'))
+    }
+}
+export const changeFixedMinValueTC2 = (fixMinVal: number, fv:FixedValueType[]) => (dispatch: Dispatch<RootAppActionsType>) => {
+    dispatch(changeFixedMinValueAC2(fixMinVal))
+    if (fv[0].midMaxVal <= fixMinVal || fixMinVal < 0) {
+        dispatch(changeValueAC2('incorrect value'))
+    } else {
+        dispatch(changeValueAC2('enter values and press "set"'))
+    }
+}
+
 
 
 export type InitialStateType = {

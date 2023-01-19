@@ -16,6 +16,7 @@ export type SettingsPropsType = {
 
 
 export const SettingsState2Redux = (props: SettingsPropsType) => {
+
     let midMaxVal = props.fv[0].midMaxVal
     let midMinVal = props.fv[0].midMinVal
 

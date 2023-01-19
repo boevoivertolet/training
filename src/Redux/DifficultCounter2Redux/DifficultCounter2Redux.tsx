@@ -4,12 +4,12 @@ import {CounterState2Redux} from './CounterState2Redux';
 import {SettingsState2Redux} from './SettingsState2Redux';
 import {useAppDispatch, useAppSelector} from '../CounterStore';
 import {
-    changeFixedMaXValueAC2,
-    changeFixedMinValueAC2,
-    setFixedValueAC2,
-    setModAC2
+    changeFixedMaXValueTC2,
+    changeFixedMinValueTC2,
+    setModTC2,
+    setValueWithFixedValueTC2
 } from './difficultCounter2ReduxFixedValueReducer';
-import {changeValueAC2, resetAC2, setValueAC2} from './difficultCounter2ReduxValueReducer';
+import {changeValueTC2, resetTC2, setValueTC2} from './difficultCounter2ReduxValueReducer';
 
 
 export function DifficultCounter2Redux() {
@@ -19,72 +19,45 @@ export function DifficultCounter2Redux() {
     const maxValue = useAppSelector(state => state.difficultCounter2ReduxValue[0].maxValue)
     const fv = useAppSelector(state => state.difficultCounter2ReduxFixedValue)
     const mod = useAppSelector(state => state.difficultCounter2ReduxFixedValue[0].mod)
-    const midMaxVal = useAppSelector(state => state.difficultCounter2ReduxFixedValue[0].midMaxVal)
 
 
     useEffect(() => {
-        let fixMaxValue = localStorage.getItem('fixMaxValue')
-        let fixMinValue = localStorage.getItem('fixMinValue')
-        if (fixMaxValue && fixMinValue) {
-            dispatch(setFixedValueAC2(Number(fixMaxValue), Number(fixMinValue)))
-            dispatch(setValueAC2(Number(fixMaxValue), Number(fixMinValue), Number(value)))
-        }
-        /*dispatch(changeFixedMaXValueTC2())*/
+        dispatch(setValueWithFixedValueTC2(Number(value)))
     }, [])
-
-
     const toMinValue = () => {
-        dispatch(resetAC2())
+        dispatch(resetTC2())
     }
-
     const plusOneFN = () => {
-        if (value[0].value < maxValue) {
-            dispatch(changeValueAC2(Number(value[0].value)))
-        }
-
+        dispatch(changeValueTC2(value, maxValue))
     }
-
+    const fixValue = () => {
+        dispatch(setValueTC2(fv))
+    }
+    const changeMod = () => {
+        dispatch(setModTC2(mod))
+    }
 
     const fixMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         let fixMaxVal = Number(e.currentTarget.value);
-        dispatch(changeFixedMaXValueAC2(fixMaxVal))
-        if (fixMaxVal <= fv[0].midMinVal || fixMaxVal < 0) {
-            dispatch(changeValueAC2('incorrect value'))
-        } else {
-            dispatch(changeValueAC2('enter values and press "set"'))
-        }
-
+        dispatch(changeFixedMaXValueTC2(fixMaxVal, fv))
     }
     const fixMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         let fixMinVal = Number(e.currentTarget.value);
-        dispatch(changeFixedMinValueAC2(fixMinVal))
-        if (fv[0].midMaxVal <= fixMinVal || fixMinVal < 0) {
-            dispatch(changeValueAC2('incorrect value'))
-        } else {
-            dispatch(changeValueAC2('enter values and press "set"'))
-        }
+        dispatch(changeFixedMinValueTC2(fixMinVal, fv))
     }
-    const fixValue = () => {
-        dispatch(setValueAC2(fv[0].midMaxVal, fv[0].midMinVal, fv[0].midMinVal))
-        localStorage.setItem('fixMaxValue', JSON.stringify(fv[0].midMaxVal))
-        localStorage.setItem('fixMinValue', JSON.stringify(fv[0].midMinVal))
 
-    }
-    const changeMod = () => {
-        dispatch(setModAC2(!mod))
-    }
 
     return (
         <div className={'setCount'}>
             {mod
                 ? <SettingsState2Redux
-                    changeMod={changeMod}
                     mod={mod}
                     fv={fv}
                     value={value}
                     fixValue={fixValue}
                     fixMinValue={fixMinValue}
                     fixMaxValue={fixMaxValue}
+                    changeMod={changeMod}
                 />
                 : <CounterState2Redux
                     value={value}
@@ -92,11 +65,7 @@ export function DifficultCounter2Redux() {
                     plusOneFN={plusOneFN}
                     changeMod={changeMod}
                 />
-
-
             }
-
-
         </div>
     );
 }

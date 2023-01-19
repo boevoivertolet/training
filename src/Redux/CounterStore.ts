@@ -13,7 +13,10 @@ import {
     DiffCounter2ActionType,
     difficultCounter2ReduxFixedValueReducer
 } from './DifficultCounter2Redux/difficultCounter2ReduxFixedValueReducer';
-import {difficultCounter2ReduxValueReducer} from './DifficultCounter2Redux/difficultCounter2ReduxValueReducer';
+import {
+    difficultCounter2ReduxValueReducer,
+    ValueActionType
+} from './DifficultCounter2Redux/difficultCounter2ReduxValueReducer';
 import thunk, {ThunkDispatch} from 'redux-thunk';
 
 
@@ -36,6 +39,6 @@ export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelecto
 export const useAppDispatch = () => useDispatch<ThunkAppDispatchType>()
 export type ThunkAppDispatchType = ThunkDispatch<AppRootStateType, any, AnyAction>
 
-export type  RootAppActionsType = DiffCounter2ActionType
+export type  RootAppActionsType = DiffCounter2ActionType | ValueActionType
 export type ThunkDispatchType = RootAppActionsType
 
