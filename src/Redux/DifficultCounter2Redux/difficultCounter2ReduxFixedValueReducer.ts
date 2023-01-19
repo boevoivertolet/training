@@ -1,7 +1,7 @@
 const initialState: Array<InitialStateType> = [{midMaxVal: 0, midMinVal: 0, mod: false}]
 
 
-export const difficultCounter2ReduxFixedValueReducer = (state: Array<InitialStateType> = initialState, action: ActionType): Array<InitialStateType> => {
+export const difficultCounter2ReduxFixedValueReducer = (state: Array<InitialStateType> = initialState, action: DiffCounter2ActionType): Array<InitialStateType> => {
     switch (action.type) {
         case '2/CHANGE-FIXED-MAX-VALUE':
             return [{...state[0], midMaxVal: action.fixMaxVal}]
@@ -26,6 +26,17 @@ export const setFixedValueAC2 = (fixMaxValue: number | string, fixMinValue: numb
 } as const)
 export const setModAC2 = (mod: boolean) => ({type: '2/SET-MOD', mod} as const)
 
+// Thunk
+/*
+export const changeFixedMaXValueTC2 = () => (dispatch: Dispatch<DiffCounter2ActionType>) => {
+    let fixMaxValue = localStorage.getItem('fixMaxValue')
+    let fixMinValue = localStorage.getItem('fixMinValue')
+    if (fixMaxValue && fixMinValue) {
+        dispatch(setFixedValueAC2(fixMaxValue, fixMinValue))
+    }
+}
+*/
+
 
 export type InitialStateType = {
     midMaxVal: number | string
@@ -33,9 +44,13 @@ export type InitialStateType = {
     mod: boolean
 
 }
-type ActionType = changeFixedMaXValueAC2Type | setFixedValueAC2Type| changeFixedMinValueAC2Type | setModAC2Type
-
 type changeFixedMaXValueAC2Type = ReturnType<typeof changeFixedMaXValueAC2>
 type changeFixedMinValueAC2Type = ReturnType<typeof changeFixedMinValueAC2>
 type setFixedValueAC2Type = ReturnType<typeof setFixedValueAC2>
 type setModAC2Type = ReturnType<typeof setModAC2>
+
+export type DiffCounter2ActionType =
+    | changeFixedMaXValueAC2Type
+    | setFixedValueAC2Type
+    | changeFixedMinValueAC2Type
+    | setModAC2Type

@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import {AnyAction, applyMiddleware, combineReducers} from 'redux';
 import {legacy_createStore as createStore} from 'redux'
 import {simpleCounterReduxReducer} from './SimpleCounterRedux/simpleCounterReduxReducer';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
@@ -10,9 +10,14 @@ import {
     difficultCounterReduxFixedValueReducer,
 } from './DifficultCounterRedux/difficultCounterReduxFixedValueReducer';
 import {
+    DiffCounter2ActionType,
     difficultCounter2ReduxFixedValueReducer
 } from './DifficultCounter2Redux/difficultCounter2ReduxFixedValueReducer';
 import {difficultCounter2ReduxValueReducer} from './DifficultCounter2Redux/difficultCounter2ReduxValueReducer';
+import thunk, {ThunkDispatch} from 'redux-thunk';
+
+
+
 
 const rootReducer = combineReducers({
     simpleCounter: simpleCounterReduxReducer,
@@ -23,8 +28,14 @@ const rootReducer = combineReducers({
     difficultCounter2ReduxFixedValue: difficultCounter2ReduxFixedValueReducer
 })
 
-export const store = createStore(rootReducer)
+export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
-export const useAppDispatch = () => useDispatch()
+
+export const useAppDispatch = () => useDispatch<ThunkAppDispatchType>()
+export type ThunkAppDispatchType = ThunkDispatch<AppRootStateType, any, AnyAction>
+
+export type  RootAppActionsType = DiffCounter2ActionType
+export type ThunkDispatchType = RootAppActionsType
+

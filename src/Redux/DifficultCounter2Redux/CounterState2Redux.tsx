@@ -40,10 +40,10 @@ export const CounterState2Redux = (props: CounterPropsType) => {
             <div>
                 <div className={value === maxValue || value === 'incorrect value' ? 'red' : 'table'}>{value}</div>
                 <UniversalButton title={'inc'}
-                                 disabled={value === maxValue || value === 'enter values and press "set"' || value === 'incorrect value'}
+                                 disabled={value === maxValue || value === 'press "set"' || value === 'incorrect value'}
                                  callBack={plusOneFN}/>
                 <UniversalButton title={'reset'}
-                                 disabled={value === minValue || value === 'enter values and press "set"' || value === 'incorrect value'}
+                                 disabled={value === minValue || value === 'press "set"' || value === 'incorrect value'}
                                  callBack={toMinValue}/>
                 <UniversalButton title={'set'} callBack={changeMod}/>
             </div>

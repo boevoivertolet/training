@@ -2,31 +2,34 @@ import React, {ChangeEvent, useEffect} from 'react';
 import '../../App.css';
 import {CounterState2Redux} from './CounterState2Redux';
 import {SettingsState2Redux} from './SettingsState2Redux';
-import {useDispatch} from 'react-redux';
-import {useAppSelector} from '../CounterStore';
+import {useAppDispatch, useAppSelector} from '../CounterStore';
 import {
     changeFixedMaXValueAC2,
     changeFixedMinValueAC2,
-    setFixedValueAC2, setModAC2
+    setFixedValueAC2,
+    setModAC2
 } from './difficultCounter2ReduxFixedValueReducer';
 import {changeValueAC2, resetAC2, setValueAC2} from './difficultCounter2ReduxValueReducer';
 
 
 export function DifficultCounter2Redux() {
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const value = useAppSelector(state => state.difficultCounter2ReduxValue)
     const maxValue = useAppSelector(state => state.difficultCounter2ReduxValue[0].maxValue)
     const fv = useAppSelector(state => state.difficultCounter2ReduxFixedValue)
     const mod = useAppSelector(state => state.difficultCounter2ReduxFixedValue[0].mod)
+    const midMaxVal = useAppSelector(state => state.difficultCounter2ReduxFixedValue[0].midMaxVal)
 
 
     useEffect(() => {
         let fixMaxValue = localStorage.getItem('fixMaxValue')
         let fixMinValue = localStorage.getItem('fixMinValue')
         if (fixMaxValue && fixMinValue) {
-            dispatch(setFixedValueAC2(fixMaxValue, fixMinValue))
+            dispatch(setFixedValueAC2(Number(fixMaxValue), Number(fixMinValue)))
+            dispatch(setValueAC2(Number(fixMaxValue), Number(fixMinValue), Number(value)))
         }
+        /*dispatch(changeFixedMaXValueTC2())*/
     }, [])
 
 

@@ -1,6 +1,6 @@
 const initialState: Array<InitialStateType> = [
     {
-        value: 'enter values and press "set"',
+        value: 'press "set"',
         minValue: 0,
         maxValue: 0
     }
